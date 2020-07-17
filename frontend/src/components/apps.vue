@@ -78,7 +78,7 @@
       </v-container>
 
       <VueSlickCarousel v-bind="carouselSettings">
-        <div v-for="media in featuredon" v-bind:key="media.media">
+        <div width="344" v-for="media in featuredon" v-bind:key="media.media">
           <v-card max-width="344" :color="media.primaryColor" dark>
             <v-card-title>
               <v-avatar tile>
@@ -430,16 +430,22 @@ export default {
       features: null,
       featuredon: null,
       carouselSettings: {
-        arrows: true,
+        arrows: false,
         dots: false,
         centerMode: true,
         centerPadding: "20px",
-        slidesToShow: 1,
-        slidesToScroll: 1,
         variableWidth: true,
         infinite: true,
         autoplay: true,
-        speed: 5000
+        speed: 1000,
+        responsive: [
+          {
+            "breakpoint": 1024,
+            "settings": {
+              "variableWidth": false,
+            }
+          },
+        ],
       }
     };
   },
