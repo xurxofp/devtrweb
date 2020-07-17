@@ -4,11 +4,36 @@
       <div style="height:100%">
         <v-container fill-height fluid>
           <v-row align="center" justify="center">
-            <v-col>
-              <h1
+            <v-col class="col-12 col-md-4">
+              <div class="pl-xs-8 pl-sm-8 pl-md-12 pl-lg-15">
+                <p class="blue--text">.devTR</p>
+                <h1 style="font-size: 3rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</h1>
+                <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <div class="py-3"></div>
+                <div>
+                  <v-btn rounded color="blue" dark>
+                    <v-icon dark color="white" style="padding-right:10px">mdi-play</v-icon> 
+                    Check our live apps</v-btn>
+                </div>
+              </div>
+            </v-col>  
+            <v-col class="col-12 col-md-8">
+              <!-- <h1
                 class="text-center"
                 style="font-size: 20vw;background: -webkit-linear-gradient(-45deg,#ff0573, #fe7600);background: linear-gradient(-45deg,#ff0573, #fe7600);-webkit-background-clip: text;-webkit-text-fill-color: transparent;}"
-              >.devTR</h1>
+              >.devTR</h1> -->
+              <div id="app">
+                <div id="playButtons">
+                  <v-btn v-on:click="play" class="mx-2" fab dark small color="red">
+                    <v-icon dark>mdi-play</v-icon>
+                  </v-btn>
+
+                  <v-btn v-on:click="pause" class="mx-2" fab dark small color="indigo">
+                    <v-icon dark>mdi-pause</v-icon>
+                  </v-btn>
+                </div>
+                <lottie :options="defaultOptions" v-on:animCreated="handleAnimation"/>
+              </div>
             </v-col>
           </v-row>
         </v-container>
@@ -406,16 +431,21 @@
 
 <script>
 import axios from "axios";
+
 import VueSlickCarousel from "vue-slick-carousel";
 import "vue-slick-carousel/dist/vue-slick-carousel.css";
 // optional style for arrows & dots
 import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
 // import { Waterfall, WaterfallItem } from "vue2-waterfall";
 
+import Lottie from 'vue-lottie';
+import animationData from '../assets/hero.json';
+
 export default {
   name: "Apps",
   components: {
-    VueSlickCarousel
+    VueSlickCarousel,
+    'lottie': Lottie
     // Waterfall,
     // WaterfallItem
   },
@@ -429,6 +459,8 @@ export default {
       items: null,
       features: null,
       featuredon: null,
+      defaultOptions: {animationData: animationData},
+      animationSpeed: 0.1,
       carouselSettings: {
         arrows: false,
         dots: false,
@@ -436,8 +468,13 @@ export default {
         centerPadding: "20px",
         variableWidth: true,
         infinite: true,
-        autoplay: true,
-        speed: 1000,
+        autoplay: false,
+        waitForAnimate: false,
+        touchMove: true,
+        accessibility: true,
+        swipe: true,	
+        swipeToSlide: true,
+        speed: 500,
         responsive: [
           {
             "breakpoint": 1024,
@@ -452,6 +489,25 @@ export default {
   methods: {
     getImgUrl(pic) {
       return require("../assets/" + pic);
+    },
+    handleAnimation: function (anim) {
+      this.anim = anim;
+    },
+
+    stop: function () {
+      this.anim.stop();
+    },
+
+    play: function () {
+      this.anim.play();
+    },
+
+    pause: function () {
+      this.anim.pause();
+    },
+
+    onSpeedChange: function () {
+      this.anim.setSpeed(this.animationSpeed);
     }
   },
   created: function() {
@@ -651,5 +707,12 @@ h3 {
 }
 .v-application a {
   text-decoration: none;
+}
+#playButtons {
+  position: relative;
+  z-index: 1;
+  float: right;
+  margin-right: 50px;
+  top: 80px;
 }
 </style>
