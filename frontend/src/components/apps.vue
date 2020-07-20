@@ -1,19 +1,180 @@
 <template>
   <div id="web">
-    <section id="hero" style="height:100vh">
-      <div style="height:100%">
+    <section id="hero" style="min-height:100vh">
+      <div style="min-height:100%">
         <v-container fill-height fluid>
+          <div color="green" :style="'height:'+headerHeight+'; width:100vw'"></div>
           <v-row align="center" justify="center">
             <v-col class="col-12 col-md-4">
               <div class="pl-xs-8 pl-sm-8 pl-md-12 pl-lg-15">
+                    <div>{{ $t('lang.notice.msg') }}</div>
                 <p class="blue--text">.devTR</p>
                 <h1 style="font-size: 3rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</h1>
                 <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 <div class="py-3"></div>
                 <div>
-                  <v-btn rounded color="blue" dark>
-                    <v-icon dark color="white" style="padding-right:10px">mdi-play</v-icon> 
-                    Check our live apps</v-btn>
+                  <v-dialog v-model="dialogApps" max-width="80vw">
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn rounded color="#5C9EFF" dark v-bind="attrs" v-on="on">
+                        <v-icon dark color="white" style="padding-right:10px">mdi-play</v-icon> 
+                        Check our live apps
+                      </v-btn>
+                    </template>
+                    <v-card>
+                      <!-- <v-card-text>
+                        <v-container fluild> -->
+                          <v-card>
+                            <v-toolbar flat color="primary" dark>
+                              <v-toolbar-title>Our apps</v-toolbar-title>
+                              <v-spacer></v-spacer>
+                              <v-toolbar-items>
+                                <v-btn icon dark @click="dialogApps = false">
+                                  <v-icon>mdi-close</v-icon>
+                                </v-btn>
+                                <!-- <v-btn dark text @click="dialogApps = false">Close</v-btn> -->
+                              </v-toolbar-items>
+                            </v-toolbar>
+                            <v-tabs vertical>
+                              <v-tab class="text-left">
+                                <v-icon left>mdi-android</v-icon> Android
+                              </v-tab>
+                              <v-tab class="text-left">
+                                <v-icon left>mdi-apple</v-icon> Apple
+                              </v-tab>
+
+                              <v-tab-item>
+                                <v-card flat>
+                                  <v-card-text>
+                                    <Waterfall
+                                      :options="{columnWidth: '.v-card', gutter:20, horizontalOrder: true, itemSelector:'.v-card', fitWidth: true}"
+                                      style="min-width: 300px; margin: 0 auto"
+                                    >
+                                      <WaterfallItem v-for="app in android" v-bind:key="app.appId">
+                                        <v-hover v-slot:default="{ hover }">
+                                          <v-card id="app" shaped style="width: 300px">
+                                            <v-img
+                                              class="white--text align-end"
+                                              :src="app.icon"
+                                              style="min-height: 300px"
+                                            >
+                                              <v-expand-transition>
+                                                <div
+                                                  v-if="hover"
+                                                  class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
+                                                  style="height: 300px;"
+                                                >
+                                                  <span v-if="app.free">Free</span>
+                                                  <span v-else>{{app.currency}}{{app.price}}</span>
+                                                </div>
+                                              </v-expand-transition>
+                                            </v-img>
+                                            <v-card-text class="pt-6" style="position: relative;">
+                                              <v-btn
+                                                absolute
+                                                color="orange"
+                                                class="white--text"
+                                                fab
+                                                large
+                                                right
+                                                top
+                                                :href="app.url"
+                                              >
+                                                <v-icon>mdi-download</v-icon>
+                                              </v-btn>
+                                            </v-card-text>
+
+                                            <v-card-subtitle class="text-wrap pb-0">{{app.summary}}</v-card-subtitle>
+
+                                            <v-card-actions>
+                                              <v-spacer></v-spacer>
+                                              <v-rating
+                                                v-model="app.score"
+                                                readonly
+                                                dense
+                                                half-increments
+                                                color="orange"
+                                              ></v-rating>
+                                              <span class="caption mr-2">({{ app.scoreText }})</span>
+                                            </v-card-actions>
+                                          </v-card>
+                                        </v-hover>
+                                      </WaterfallItem>
+                                    </Waterfall>
+                                  </v-card-text>
+                                </v-card>
+                              </v-tab-item>
+                              <v-tab-item>
+                                <v-card flat>
+                                  <v-card-text>
+                                    <Waterfall
+                                      :options="{columnWidth: '.v-card', gutter:20, horizontalOrder: true, itemSelector:'.v-card', fitWidth: true}"
+                                      style="min-width: 300px; margin: 0 auto"
+                                    >
+                                      <WaterfallItem v-for="app in ios" v-bind:key="app.appId">
+                                        <v-hover v-slot:default="{ hover }">
+                                          <v-card shaped style="width: 300px">
+                                            <v-img
+                                              class="white--text align-end"
+                                              :src="app.icon"
+                                              style="min-height: 300px"
+                                            >
+                                              <v-expand-transition>
+                                                <div
+                                                  v-if="hover"
+                                                  class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
+                                                  style="height: 300px;"
+                                                >
+                                                  <span v-if="app.free">Free</span>
+                                                  <span v-else>{{app.currency}}{{app.price}}</span>
+                                                </div>
+                                              </v-expand-transition>
+                                            </v-img>
+                                            <v-card-text class="pt-6" style="position: relative;">
+                                              <v-btn
+                                                absolute
+                                                color="orange"
+                                                class="white--text"
+                                                fab
+                                                large
+                                                right
+                                                top
+                                                :href="app.url"
+                                              >
+                                                <v-icon>mdi-download</v-icon>
+                                              </v-btn>
+                                            </v-card-text>
+                                            <v-card-title>{{app.title}}</v-card-title>
+
+                                            <v-card-subtitle class="pb-0">{{app.description}}</v-card-subtitle>
+
+                                            <v-card-actions>
+                                              <v-spacer></v-spacer>
+                                              <v-rating
+                                                v-model="app.score"
+                                                readonly
+                                                dense
+                                                half-increments
+                                                color="orange"
+                                              ></v-rating>
+                                              <span class="caption mr-2">({{ app.score }})</span>
+                                            </v-card-actions>
+                                          </v-card>
+                                        </v-hover>
+                                      </WaterfallItem>
+                                    </Waterfall>
+                                  </v-card-text>
+                                </v-card>
+                              </v-tab-item>
+                            </v-tabs>
+                          </v-card>
+                        <!-- </v-container>
+                      </v-card-text> -->
+                      <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="blue darken-1" text @click="dialogApps = false">Close</v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
                 </div>
               </div>
             </v-col>  
@@ -24,11 +185,11 @@
               >.devTR</h1> -->
               <div id="app">
                 <div id="playButtons">
-                  <v-btn v-on:click="play" class="mx-2" fab dark small color="red">
+                  <v-btn v-on:click="play" class="mx-2" fab dark small color="#2AB767">
                     <v-icon dark>mdi-play</v-icon>
                   </v-btn>
 
-                  <v-btn v-on:click="pause" class="mx-2" fab dark small color="indigo">
+                  <v-btn v-on:click="pause" class="mx-2" fab dark small color="#5C9EFF">
                     <v-icon dark>mdi-pause</v-icon>
                   </v-btn>
                 </div>
@@ -43,7 +204,7 @@
       <div class="py-12"></div>
 
       <v-container class="text-center">
-        <h2 class="display-2 font-weight-bold mb-3">VUETIFY FEATURES</h2>
+        <h2 class="display-2 font-weight-bold mb-3">WHAT WE DO?</h2>
 
         <v-responsive class="mx-auto mb-12" width="56">
           <v-divider class="mb-1"></v-divider>
@@ -56,7 +217,7 @@
             <v-card class="py-12 px-4" color="grey lighten-5" flat>
               <v-theme-provider dark>
                 <div>
-                  <v-avatar color="primary" size="88">
+                  <v-avatar color="#5C9EFF" size="88">
                     <v-icon large v-text="icon"></v-icon>
                   </v-avatar>
                 </div>
@@ -124,150 +285,9 @@
       </VueSlickCarousel>
       <div class="py-12"></div>
     </section>
-    <!-- <section id="apps">
-      <v-container fluild>
-        <v-card>
-          <v-toolbar flat color="primary" dark>z
-            <v-toolbar-title>Apps</v-toolbar-title>
-          </v-toolbar>
-          <v-tabs vertical>
-            <v-tab class="text-left">
-              <v-icon left>mdi-andrpod</v-icon>Android
-            </v-tab>
-            <v-tab class="text-left">
-              <v-icon left>mdi-apple</v-icon>iOS
-            </v-tab>
-
-            <v-tab-item>
-              <v-card flat>
-                <v-card-text>
-                  <Waterfall
-                    :options="{columnWidth: '.v-card', gutter:20, horizontalOrder: true, itemSelector:'.v-card', fitWidth: true}"
-                    style="min-width: 300px; margin: 0 auto"
-                  >
-                    <WaterfallItem v-for="app in android" v-bind:key="app.appId">
-                      <v-hover v-slot:default="{ hover }">
-                        <v-card shaped style="width: 300px">
-                          <v-img
-                            class="white--text align-end"
-                            :src="app.icon"
-                            style="min-height: 300px"
-                          >
-                            <v-expand-transition>
-                              <div
-                                v-if="hover"
-                                class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
-                                style="height: 300px;"
-                              >
-                                <span v-if="app.free">Free</span>
-                                <span v-else>{{app.currency}}{{app.price}}</span>
-                              </div>
-                            </v-expand-transition>
-                          </v-img>
-                          <v-card-text class="pt-6" style="position: relative;">
-                            <v-btn
-                              absolute
-                              color="orange"
-                              class="white--text"
-                              fab
-                              large
-                              right
-                              top
-                              :href="app.url"
-                            >
-                              <v-icon>mdi-download</v-icon>
-                            </v-btn>
-                          </v-card-text>
-
-                          <v-card-subtitle class="text-wrap pb-0">{{app.summary}}</v-card-subtitle>
-
-                          <v-card-actions>
-                            <v-spacer></v-spacer>
-                            <v-rating
-                              v-model="app.score"
-                              readonly
-                              dense
-                              half-increments
-                              color="orange"
-                            ></v-rating>
-                            <span class="caption mr-2">({{ app.scoreText }})</span>
-                          </v-card-actions>
-                        </v-card>
-                      </v-hover>
-                    </WaterfallItem>
-                  </Waterfall>
-                </v-card-text>
-              </v-card>
-            </v-tab-item>
-            <v-tab-item>
-              <v-card flat>
-                <v-card-text>
-                  <Waterfall
-                    :options="{columnWidth: '.v-card', gutter:20, horizontalOrder: true, itemSelector:'.v-card', fitWidth: true}"
-                    style="min-width: 300px; margin: 0 auto"
-                  >
-                    <WaterfallItem v-for="app in ios" v-bind:key="app.appId">
-                      <v-hover v-slot:default="{ hover }">
-                        <v-card shaped style="width: 300px">
-                          <v-img
-                            class="white--text align-end"
-                            :src="app.icon"
-                            style="min-height: 300px"
-                          >
-                            <v-expand-transition>
-                              <div
-                                v-if="hover"
-                                class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
-                                style="height: 300px;"
-                              >
-                                <span v-if="app.free">Free</span>
-                                <span v-else>{{app.currency}}{{app.price}}</span>
-                              </div>
-                            </v-expand-transition>
-                          </v-img>
-                          <v-card-text class="pt-6" style="position: relative;">
-                            <v-btn
-                              absolute
-                              color="orange"
-                              class="white--text"
-                              fab
-                              large
-                              right
-                              top
-                              :href="app.url"
-                            >
-                              <v-icon>mdi-download</v-icon>
-                            </v-btn>
-                          </v-card-text>
-                          <v-card-title>{{app.title}}</v-card-title>
-
-                          <v-card-subtitle class="pb-0">{{app.description}}</v-card-subtitle>
-
-                          <v-card-actions>
-                            <v-spacer></v-spacer>
-                            <v-rating
-                              v-model="app.score"
-                              readonly
-                              dense
-                              half-increments
-                              color="orange"
-                            ></v-rating>
-                            <span class="caption mr-2">({{ app.score }})</span>
-                          </v-card-actions>
-                        </v-card>
-                      </v-hover>
-                    </WaterfallItem>
-                  </Waterfall>
-                </v-card-text>
-              </v-card>
-            </v-tab-item>
-          </v-tabs>
-        </v-card>
-      </v-container>
-    </section>-->
-
+   
     <v-footer dark padless>
-      <v-card flat tile class="indigo lighten-1 white--text text-center">
+      <v-card style="background-image: linear-gradient(to right top, rgba(19, 84, 122, 1), rgba(128, 208, 199, 1))" flat tile class="lighten-1 white--text text-center">
         <v-card-text>
           <v-btn v-for="icon in icons" :key="icon" class="mx-4 white--text" icon>
             <v-icon size="24px">{{ icon }}</v-icon>
@@ -282,152 +302,12 @@
 
         <v-card-text class="white--text">
           {{ new Date().getFullYear() }} —
-          <strong>Vuetify</strong>
+          <strong>DevelopmentTR</strong>
         </v-card-text>
       </v-card>
     </v-footer>
   </div>
 </template>
-
-
-
-<!--<template>
-
-    <v-container fluild>
-        <v-row>
-            <v-col cols=4 class="mx-auto">
-                <h1 style="min-width:300px">Hola que tal fajdfasld asdalj 👨🏼‍💻</h1>
-            </v-col>
-            <v-col>    
-                <Waterfall :options="{columnWidth: '.v-card', gutter:20, horizontalOrder: true, itemSelector:'.v-card', fitWidth: true}" style="min-width: 300px; margin: 0 auto">
-                    <WaterfallItem
-                    v-for="app in apps" v-bind:key="app.appId"
-                    >
-                    
-                        <v-card
-                            shaped
-                            style="width: 300px"
-                        >
-                            <v-img
-                            class="white--text align-end"
-                            :src=app.icon
-                            style="min-height: 300px"
-                            >
-                            </v-img>
-                            <v-card-title>{{app.title}}</v-card-title>
-                            
-
-                            <v-card-subtitle class="pb-0">{{app.summary}}</v-card-subtitle>
-
-                            <v-card-actions>
-                                <v-btn
-                                    color="orange"
-                                    text
-                                >
-                                    Download
-                                </v-btn>
-                                <v-spacer></v-spacer>
-                                <v-rating
-                                    v-model=app.score
-                                    readonly
-                                    dense
-                                    half-increments
-                                    color="orange"
-                                ></v-rating>
-                                <span class="caption mr-2">
-                                    ({{ app.scoreText }})
-                                </span>
-                            </v-card-actions>
-                        </v-card>
-                    </WaterfallItem>
-                </Waterfall>
-            </v-col>
-        </v-row>
-    </v-container>
-
-</template> -->
-
-<!-- <template>
-    <v-container fluid mx-auto>
-        <v-row>
-            <v-col cols="12">
-                <v-row
-                    align="stretch"
-                    justify="start"
-                >
-                        <v-card
-                            color="#26c6da"
-                            dark
-                            max-width="400"
-                            style="margin-left:25px"
-                            v-for="app in apps" v-bind:key="app.appId"
-                        >
-                            <v-card-title>
-                            <v-icon
-                                large
-                                left
-                            >
-                                mdi-android
-                            </v-icon>
-                            <span class="title font-weight-light">Play Store</span>
-                            </v-card-title>
-
-                            <v-card-text class="headline font-weight-bold">
-                            {{app.summary}}
-                            </v-card-text>
-
-                            <v-card-actions>
-                            <v-list-item class="grow">
-                                <v-list-item-avatar color="grey darken-3">
-                                <v-img
-                                    class="elevation-6"
-                                    :src="app.icon"
-                                ></v-img>
-                                </v-list-item-avatar>
-
-                                <v-list-item-content>
-                                <v-list-item-title>{{app.title}}</v-list-item-title>
-                                </v-list-item-content>
-
-                                <v-row
-                                align="center"
-                                justify="end"
-                                >
-                                <v-icon class="mr-1">mdi-star</v-icon>
-                                <span class="subheading mr-2">{{app.scoreText}}</span>
-                                </v-row>
-                            </v-list-item>
-                            </v-card-actions>
-                        </v-card>
-                </v-row>
-            </v-col>
-        </v-row>
-    </v-container>
-</template> -->
-
-<!-- <template>
-  <div class="container">
-    <h3> Apps:</h3>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Title</th>
-          <th scope="col">url</th>
-          <th scope="col">icon</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="app in apps" v-bind:key="app.appId"> 
-          <th scope="row">{{app.appId}}</th>
-          <td>{{app.title}}</td>
-          <td>{{app.url}}</td>
-          <td>{{app.icon}}</td>
-        </tr>
-      </tbody>
-    </table> 
-  </div> 
-</template> -->
 
 <script>
 import axios from "axios";
@@ -436,7 +316,7 @@ import VueSlickCarousel from "vue-slick-carousel";
 import "vue-slick-carousel/dist/vue-slick-carousel.css";
 // optional style for arrows & dots
 import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
-// import { Waterfall, WaterfallItem } from "vue2-waterfall";
+import { Waterfall, WaterfallItem } from "vue2-waterfall";
 
 import Lottie from 'vue-lottie';
 import animationData from '../assets/hero.json';
@@ -445,9 +325,9 @@ export default {
   name: "Apps",
   components: {
     VueSlickCarousel,
-    'lottie': Lottie
-    // Waterfall,
-    // WaterfallItem
+    'lottie': Lottie,
+    Waterfall,
+    WaterfallItem,
   },
   data() {
     return {
@@ -461,6 +341,8 @@ export default {
       featuredon: null,
       defaultOptions: {animationData: animationData},
       animationSpeed: 0.1,
+      headerHeight: "128px",
+      dialogApps: false,
       carouselSettings: {
         arrows: false,
         dots: false,
@@ -531,7 +413,6 @@ export default {
       ["1m", "Downloads/mo"],
       ["5m", "Total Downloads"]
     ];
-    this.items = ["hola", "que", "tal"];
     this.features = [
       {
         icon: "mdi-account-group-outline",
@@ -674,6 +555,11 @@ export default {
         secondaryColor: "#FE9600"
       }
     ];
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.headerHeight = document.getElementById("header").clientHeight;
+    })
   }
 };
 </script>
@@ -685,9 +571,9 @@ body {
 h3 {
   margin-bottom: 5%;
 }
-/* .v-card {
+.v-card#app {
   margin-bottom: 20px;
-} */
+}
 .v-card--reveal {
   align-items: center;
   bottom: 0;
@@ -712,7 +598,19 @@ h3 {
   position: relative;
   z-index: 1;
   float: right;
-  margin-right: 50px;
-  top: 80px;
+  margin-right: 80px;
+  top: 120px;
+}
+@media only screen and (max-width: 600px) {
+  #playButtons {
+    margin-right: 50px;
+    top: 60px;
+  }
+}
+@media only screen and (min-width: 2000px) {
+  #playButtons {
+    margin-right: 160px;
+    top: 160px;
+  }
 }
 </style>
