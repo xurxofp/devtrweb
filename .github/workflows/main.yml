@@ -27,7 +27,7 @@ jobs:
           # Docker repository to tag the image with
           repository: devtrfrontend
           # Path to the build context
-          path: frontend
+          path: ./frontend
           
   build-backend:
     # The type of runner that the job will run on
@@ -45,4 +45,4 @@ jobs:
           # Docker repository to tag the image with
           repository: devtrbackend
           # Path to the build context
-          path: backend
+          path: ./backend
