@@ -7,17 +7,16 @@
           <v-row align="center" justify="center">
             <v-col class="col-12 col-md-4">
               <div class="pl-xs-8 pl-sm-8 pl-md-12 pl-lg-15">
-                    <div>{{ $t('lang.notice.msg') }}</div>
                 <p class="blue--text">.devTR</p>
-                <h1 style="font-size: 3rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</h1>
-                <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h1 style="font-size: 3rem;">{{ $t('lang.hero.title') }}</h1>
+                <p>{{ $t('lang.hero.subtitle') }}</p>
                 <div class="py-3"></div>
                 <div>
                   <v-dialog v-model="dialogApps" max-width="80vw">
                     <template v-slot:activator="{ on, attrs }">
                       <v-btn rounded color="#5C9EFF" dark v-bind="attrs" v-on="on">
                         <v-icon dark color="white" style="padding-right:10px">mdi-play</v-icon> 
-                        Check our live apps
+                        {{ $t('lang.hero.button') }}
                       </v-btn>
                     </template>
                     <v-card>
@@ -25,7 +24,7 @@
                         <v-container fluild> -->
                           <v-card>
                             <v-toolbar flat color="primary" dark>
-                              <v-toolbar-title>Our apps</v-toolbar-title>
+                              <v-toolbar-title>{{ $t('lang.miscellaneous.ourApps') }}</v-toolbar-title>
                               <v-spacer></v-spacer>
                               <v-toolbar-items>
                                 <v-btn icon dark @click="dialogApps = false">
@@ -171,7 +170,7 @@
                       </v-card-text> -->
                       <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="blue darken-1" text @click="dialogApps = false">Close</v-btn>
+                        <v-btn color="blue darken-1" text @click="dialogApps = false">{{ $t('lang.miscellaneous.close') }}</v-btn>
                       </v-card-actions>
                     </v-card>
                   </v-dialog>
@@ -204,7 +203,7 @@
       <div class="py-12"></div>
 
       <v-container class="text-center">
-        <h2 class="display-2 font-weight-bold mb-3">WHAT WE DO?</h2>
+        <h2 class="display-2 font-weight-bold mb-3">{{ $t('lang.miscellaneous.featuresTitle') }}</h2>
 
         <v-responsive class="mx-auto mb-12" width="56">
           <v-divider class="mb-1"></v-divider>
@@ -213,7 +212,7 @@
         </v-responsive>
 
         <v-row>
-          <v-col v-for="({ icon, title, text }, i) in features" :key="i" cols="12" md="4">
+          <v-col v-for="({ icon, title, text }, i) in $t('lang.features')" :key="i" cols="12" md="4">
             <v-card class="py-12 px-4" color="grey lighten-5" flat>
               <v-theme-provider dark>
                 <div>
@@ -240,11 +239,11 @@
       >
         <v-container fill-height>
           <v-row class="mx-auto">
-            <v-col v-for="[value, title] of stats" :key="title" cols="12" md="3">
+            <v-col v-for="({ value, text }) of $t('lang.stats')" :key="text" cols="12" md="3">
               <div class="text-center">
                 <div class="display-3 font-weight-black mb-4" v-text="value"></div>
 
-                <div class="title font-weight-regular text-uppercase" v-text="title"></div>
+                <div class="title font-weight-regular text-uppercase" v-text="text"></div>
               </div>
             </v-col>
           </v-row>
@@ -254,7 +253,7 @@
     <section id="featured">
       <div class="py-12"></div>
       <v-container class="text-center">
-        <h2 class="display-2 font-weight-bold mb-3">Featured on:</h2>
+        <h2 class="display-2 font-weight-bold mb-3">{{ $t('lang.miscellaneous.featuredTitle') }}</h2>
 
         <v-responsive class="mx-auto mb-12" width="56">
           <v-divider class="mb-1"></v-divider>
@@ -278,7 +277,7 @@
             <v-card-actions>
               <a class="white--text" :href="media.authorLink">- {{media.author}}</a>
               <v-spacer></v-spacer>
-              <v-btn :href="media.link" :color="media.secondaryColor">Read all</v-btn>
+              <v-btn :href="media.link" :color="media.secondaryColor">{{ $t('lang.miscellaneous.readAll') }}</v-btn>
             </v-card-actions>
           </v-card>
         </div>
@@ -287,7 +286,7 @@
     </section>
    
     <v-footer dark padless>
-      <v-card style="background-image: linear-gradient(to right top, rgba(19, 84, 122, 1), rgba(128, 208, 199, 1))" flat tile class="lighten-1 white--text text-center">
+      <v-card style="background-image: linear-gradient(to right top, rgba(19, 84, 122, 1), rgba(128, 208, 199, 1)); width: 100vw;" flat tile class="lighten-1 white--text text-center">
         <v-card-text>
           <v-btn v-for="icon in icons" :key="icon" class="mx-4 white--text" icon>
             <v-icon size="24px">{{ icon }}</v-icon>
@@ -296,7 +295,10 @@
 
         <v-card-text
           class="white--text pt-0"
-        >Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</v-card-text>
+        >
+          {{ $t('lang.miscellaneous.footer') }}
+          {{ $t('lang.miscellaneous.footer2') }}
+        </v-card-text>
 
         <v-divider></v-divider>
 
@@ -406,32 +408,6 @@ export default {
       "mdi-twitter",
       "mdi-linkedin",
       "mdi-instagram"
-    ];
-    this.stats = [
-      ["24k", "Github Stars"],
-      ["330+", "Releases"],
-      ["1m", "Downloads/mo"],
-      ["5m", "Total Downloads"]
-    ];
-    this.features = [
-      {
-        icon: "mdi-account-group-outline",
-        title: "Vibrant Community",
-        text:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto cupiditate sint possimus quidem atque harum excepturi nemo velit tempora! Enim inventore fuga, qui ipsum eveniet facilis obcaecati corrupti asperiores nam"
-      },
-      {
-        icon: "mdi-update",
-        title: "Frequent Updates",
-        text:
-          "Sed ut elementum justo. Suspendisse non justo enim. Vestibulum cursus mauris dui, a luctus ex blandit. Lorem ipsum dolor sit amet consectetur adipisicing elit. qui ipsum eveniet facilis obcaecati corrupti consectetur adipisicing elit."
-      },
-      {
-        icon: "mdi-shield-outline",
-        title: "Long-term Support",
-        text:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto cupiditate sint possimus quidem atque harum excepturi nemo velit tempora! Enim inventore fuga, qui ipsum eveniet facilis obcaecati corrupti asperiores nam"
-      }
     ];
     this.featuredon = [
       {

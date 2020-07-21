@@ -15,10 +15,11 @@
           <v-img v-bind="props" style="background-color: white;"></v-img>
         </template>
 
+        <div style="filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));">
         <v-avatar tile style="overflow: visible;">
-          <img :src="require('./assets/dtr_white.svg')" alt="DevelopmentTR" style="filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));"/>
+          <img :src="require('./assets/dtr_white.svg')" alt="DevelopmentTR"/>
         </v-avatar>
-
+        </div>
         <v-spacer></v-spacer>
 
         <v-dialog v-model="dialog" max-width="600px">
@@ -29,36 +30,29 @@
           </template>
           <v-card>
             <v-card-title>
-              <span class="headline">Send us an e-mail</span>
+              <span class="headline">{{ $t('lang.email.title') }}</span>
             </v-card-title>
             <v-card-text>
               <v-container>
                 <v-row>
                   <v-col cols="12">
-                    <v-text-field label="Email*" required></v-text-field>
+                    <v-text-field :label="$t('lang.email.email')+'*'" required></v-text-field>
                   </v-col>
 
                   <v-col cols="12">
-                    <v-textarea auto-grow label="Text*" required></v-textarea>
+                    <v-textarea auto-grow :label="$t('lang.email.text')+'*'" required></v-textarea>
                   </v-col>
                 </v-row>
               </v-container>
-              <small>*indicates required field</small>
+              <small>*{{ $t('lang.email.required') }}</small>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-              <v-btn color="blue darken-1" text @click="dialog = false">Send</v-btn>
+              <v-btn color="blue darken-1" text @click="dialog = false">{{ $t('lang.miscellaneous.close') }}</v-btn>
+              <v-btn color="blue darken-1" text @click="dialog = false">{{ $t('lang.miscellaneous.send') }}</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
-
-        <!-- <b-dropdown-item v-for="language in languages" :key="language.title">
-          <div class="d-flex">
-            <flag :iso="language.flag"/>
-            <span>{{language.title}}</span>
-          </div>
-        </b-dropdown-item> -->
 
         <v-menu
           transition="slide-y-transition"
@@ -89,13 +83,10 @@
         </v-menu>
 
 
-        <v-btn icon>
-          <v-icon>mdi-heart</v-icon>
-        </v-btn>
+        <!-- <v-btn icon>
+          <v-icon style="filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));">mdi-email</v-icon>
+        </v-btn> -->
 
-        <v-btn icon>
-          <v-icon>mdi-dots-vertical</v-icon>
-        </v-btn>
       </v-app-bar>
 
       <v-content>

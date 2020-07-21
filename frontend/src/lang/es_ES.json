@@ -1,5 +1,58 @@
 {
-    "notice": {
-        "msg": "Tienes un mensaje"
+    "miscellaneous": {
+        "featuresTitle": "¿Qué hacemos?",
+        "featuredTitle": "Hablan de nosotros",
+        "readAll": "Leer más",
+        "ourApps": "Nuestras apps",
+        "close": "Cerrar",
+        "send": "Enviar",
+        "footer": "",
+        "footer2": "Android es una marca registrada de Google LLC y iOS es una marca registrada de Cisco en los EEUU y otras regiones."
+    },
+    "email": {
+        "title": "Envíanos un email",
+        "email": "Email",
+        "text": "Cuerpo del mensaje",
+        "required": "Indica un campo obligatorio"
+    },
+    "hero": {
+        "title": "Tú pones las ideas, nosotros hacemos las aps",
+        "subtitle": "Android, iOS, web y mucho más",
+        "button": "Consulta nuestras apps online"
+    },
+    "features": {
+        "1": {
+            "icon": "mdi-account-group-outline",
+            "title": "Innovación",
+            "text": "En DevTR, desarrollamos aplicaciones a través de una idea, incorporando siempre las novedades presentes en cada sistema operativo para que resulten más atractivas para el consumidor."    
+        },
+        "2": {
+            "icon": "mdi-update",
+            "title": "Mejora contínua",
+            "text": "Iteramos nuestros productos adaptándonos a las necesidades de nuestros usuarios en un proceso de mejora continua. Reaccionamos rápidamente ante los errores que puedan aparecer para que no tengas que preocuparte de nada."
+        },
+        "3": {
+            "icon": "mdi-shield-outline",
+            "title": "¿Para qué necesito una app?",
+            "text": "Si existe, todo tiene una app. Desde una calculadora a una linterna, existen aplicaciones para todo y los usuarios esperan encontrar la que mejor se adapte a sus necesidades. Nosotros utilizamos nuestra experiencia para crearla por ti"
+        }
+    },
+    "stats": {
+        "1":{
+            "value": "9+",
+            "text": "Aplicaciones"
+        },
+        "2":{
+            "value": "10M+",
+            "text": "Descargas"
+        },
+        "3":{
+            "value": "100k+",
+            "text": "Valoraciones"
+        },
+        "4":{
+            "value": "4 years",
+            "text": "Experiencia"
+        }
     }
 }

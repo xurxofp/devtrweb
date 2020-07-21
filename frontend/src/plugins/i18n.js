@@ -15,10 +15,9 @@ const messages = {
     }
 }
 
-
-
 export const i18n = new VueI18n({
-  locale: 'en',
+  locale: navigator.language.split('-')[0] || navigator.userLanguage.split('-')[0],
+  fallbackLocale: 'en',
   messages
 })
 

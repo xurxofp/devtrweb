@@ -1,5 +1,59 @@
 {
-    "notice": {
-        "msg": "You have message"
+    "miscellaneous": {
+        "featuresTitle": "What we do?",
+        "featuredTitle": "Featured on",
+        "readAll": "Read more",
+        "ourApps": "Our apps",
+        "close": "Close",
+        "send": "Send",
+        "footer": "",
+        "footer2": "Android is a trademark of Google LLC and iOS is a trademark or registered trademark of Cisco in the U.S. and other countries and is used under license."
+    },
+    "email": {
+        "title": "Send us an email",
+        "email": "Email",
+        "text": "Body",
+        "required": "Indicates required field"
+    },
+    "hero": {
+        "title": "You have the ideas, we do the aps",
+        "subtitle": "Android, iOS, web and much more",
+        "button": "Check our live apps"
+    },
+    "features": {
+        "1": {
+            "icon": "mdi-account-group-outline",
+            "title": "Innovation",
+            "text": "At DevTR, we develop applications through an idea, always incorporating the new features present in each operating system to make them more attractive to the consumer."    
+        },
+        "2": {
+            "icon": "mdi-update",
+            "title": "Continuous improvement",
+            "text": "We aim our products at adapting to the needs of our users in a process of continuous improvement. We react quickly to errors that may appear so that you do not have to worry about anything."
+        },
+        "3": {
+            "icon": "mdi-shield-outline",
+            "title": "Why do I need an app?",
+            "text": "If it exists, everything has an app. From a calculator to a flashlight, there are apps for everything and users expect to find the one that best suits their needs. We use our experience to create it for you."
+        }
+    },
+    "stats": {
+        "1":{
+            "value": "9+",
+            "text": "Apps"
+        },
+        "2":{
+            "value": "10M+",
+            "text": "Downloads"
+        },
+        "3":{
+            "value": "100k+",
+            "text": "Ratings"
+        },
+        "4":{
+            "value": "4 years",
+            "text": "Experience"
+        }
+
     }
 }
