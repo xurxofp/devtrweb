@@ -395,11 +395,11 @@ export default {
     }
   },
   created: function() {
-    axios.get("http://34.241.113.171:3000/playstore").then(res => {
+    axios.get("https://api.devtr.es/playstore").then(res => {
       this.android = res.data;
     });
 
-    axios.get("http://34.241.113.171:3000/applestore").then(res => {
+    axios.get("https://api.devtr.es/applestore").then(res => {
       this.ios = res.data;
     });
 
