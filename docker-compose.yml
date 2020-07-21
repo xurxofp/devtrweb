@@ -3,7 +3,7 @@ services:
   backend:
     container_name: DEVTR-BACKEND
     restart: unless-stopped
-    image: backend
+    image: xurxofp/devtrbackend:latest
     logging:
       options:
         max-file: "5"
@@ -14,7 +14,7 @@ services:
   frontend:
     container_name: DEVTR-FRONTEND
     restart: unless-stopped
-    image: frontend
+    image: xurxofp/devtrfrontend:latest
     logging:
       options:
         max-file: "5"
