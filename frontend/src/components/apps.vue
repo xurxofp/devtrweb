@@ -404,10 +404,6 @@ export default {
     });
 
     this.icons = [
-      "mdi-facebook",
-      "mdi-twitter",
-      "mdi-linkedin",
-      "mdi-instagram"
     ];
     this.featuredon = [
       {
@@ -576,6 +572,9 @@ h3 {
   float: right;
   margin-right: 80px;
   top: 120px;
+}
+.v-card__text, .v-card__title {
+  word-break: normal!important 
 }
 @media only screen and (max-width: 600px) {
   #playButtons {
