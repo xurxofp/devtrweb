@@ -1,0 +1,24 @@
+version: '3'
+services:
+  backend:
+    container_name: DEVTR-BACKEND
+    restart: unless-stopped
+    image: backend
+    logging:
+      options:
+        max-file: "5"
+        max-size: "10m"
+    ports:
+      - "3000:8080"
+    network_mode: bridge
+  frontend:
+    container_name: DEVTR-FRONTEND
+    restart: unless-stopped
+    image: frontend
+    logging:
+      options:
+        max-file: "5"
+        max-size: "10m"
+    ports:
+      - "8080:8080"
+    network_mode: bridge
