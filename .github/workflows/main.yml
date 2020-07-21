@@ -30,6 +30,9 @@ jobs:
           repository: devtrfrontend
           # Path to the build context
           path: ./frontend
+          # Automatically tags the built image with the git reference
+          tag_with_ref: true
+          tags: latest
           
   build-backend:
     # The type of runner that the job will run on
@@ -50,3 +53,6 @@ jobs:
           repository: devtrbackend
           # Path to the build context
           path: ./backend
+          # Automatically tags the built image with the git reference
+          tag_with_ref: true
+          tags: latest
