@@ -430,6 +430,18 @@ export default {
         secondaryColor: "#278EE7"
       },
       {
+        logo: "press/appoftheday.png",
+        link:
+          "https://appoftheday.downloadastro.com/app/whatsremoved/",
+        media: "App of the day",
+        author: "-",
+        authorLink:
+          "https://appoftheday.downloadastro.com/app/whatsremoved/",
+        text: "WhatsRemoved+ is an application that allows you to monitor notifications and folders in the pursuit of changes and deleted files so you never miss anything",
+        primaryColor: "#B7D65D",
+        secondaryColor: "#053482"
+      },
+      {
         logo: "press/elandroidelibre.png",
         link:
           "https://elandroidelibre.elespanol.com/2018/01/como-leer-mensajes-borrados-whatsapp-whatsremoved.html",
