@@ -16,7 +16,7 @@
     "vue-lottie": "^0.2.1",
     "vue-slick-carousel": "^1.0.6",
     "vue2-waterfall": "^3.0.1",
-    "vuetify": "^2.2.11"
+    "vuetify": "^2.6.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.4.0",
