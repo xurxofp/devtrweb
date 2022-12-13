@@ -18,7 +18,7 @@
   "homepage": "https://github.com/xurxofp/devtrweb#readme",
   "dependencies": {
     "app-store-scraper": "^0.16.3",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "google-play-scraper": "^7.1.3"
   }
 }
