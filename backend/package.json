@@ -1,24 +1,24 @@
 {
-  "name": "devtrbackend",
-  "version": "1.0.0",
-  "description": "DevTR backend",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xurxofp/devtrweb.git"
-  },
-  "author": "Xurxo Freitas Pereira",
-  "license": "CC-BY-SA-4.0",
-  "bugs": {
-    "url": "https://github.com/xurxofp/devtrweb/issues"
-  },
-  "homepage": "https://github.com/xurxofp/devtrweb#readme",
-  "dependencies": {
-    "app-store-scraper": "^0.16.3",
-    "express": "^4.17.1",
-    "google-play-scraper": "^7.1.3"
-  }
+    "name": "devtrbackend",
+    "version": "1.0.0",
+    "description": "DevTR backend",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/xurxofp/devtrweb.git"
+    },
+    "author": "Xurxo Freitas Pereira",
+    "license": "CC-BY-SA-4.0",
+    "bugs": {
+        "url": "https://github.com/xurxofp/devtrweb/issues"
+    },
+    "homepage": "https://github.com/xurxofp/devtrweb#readme",
+    "dependencies": {
+        "app-store-scraper": "^0.17.0",
+        "express": "^4.17.1",
+        "google-play-scraper": "^9.1.1"
+    }
 }

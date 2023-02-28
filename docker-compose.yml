@@ -4,6 +4,7 @@ services:
     container_name: DEVTR-BACKEND
     restart: unless-stopped
     image: xurxofp/devtrbackend:latest
+    # image: backend
     logging:
       options:
         max-file: "5"
@@ -15,10 +16,11 @@ services:
     container_name: DEVTR-FRONTEND
     restart: unless-stopped
     image: xurxofp/devtrfrontend:latest
+    # image: frontend
     logging:
       options:
         max-file: "5"
         max-size: "10m"
     ports:
-      - "8080:8080"
+      - "80:8080"
     network_mode: bridge
